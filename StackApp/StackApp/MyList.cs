@@ -34,22 +34,51 @@ namespace StackApp
             el.Next = new Elem<T> { Info = item };
         }
 
-        public void RemoveValue(int k)
+        public void RemoveValue(T x)
         {
-            throw new NotImplementedException();            
+            while(First != null && First.Info.Equals(x) ) 
+            {
+                First = First.Next;
+            }
+            if(First == null)
+            {
+                return;
+            }
+
+            var elem = First;
+            while(elem.Next != null)
+            {
+                if (elem.Next.Info.Equals(x))
+                    elem.Next = elem.Next.Next;
+                else 
+                    elem = elem.Next;
+            }            
         }
 
-        public void RemoveElemK(int k)
+        public void RemoveAtIndex(int k)
         {
             throw new NotImplementedException();
         }
+
+        public void Clear()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int Count()
+        {
+            throw new NotImplementedException();
+        }
+
 
         public bool Contains(T item)
         {
             throw new NotImplementedException();
         }
-
-
+        public bool CountOfValue(T item)
+        {
+            throw new NotImplementedException();
+        }
 
         public override string ToString()
         {
