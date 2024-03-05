@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,52 @@ using System.Threading.Tasks;
 
 namespace StackApp
 {
-    public class MyLinkedList<T>
+ 
+    // класс для реализации прохода по коллекции
+    public class ListEnumerator<T> : IEnumerator<T>
+    {
+        private MyLinkedList<T> _list;
+        private Elem<T> curElem;
+
+        // в конструктор передаём нашу коллекцию
+        public ListEnumerator(MyLinkedList<T> list)
+        {
+            _list = list;
+            curElem = new Elem<T>() { Info = default, Next = list.First };
+        }
+
+        // получить текущий элемент коллекции
+        public T Current
+        {
+            get
+            {
+                return curElem.Info;
+            }
+
+        }
+
+        object IEnumerator.Current => curElem.Info;
+
+        public void Dispose()
+        {
+            return;
+        }
+
+        // переход на следующий элемент, если коллекция закончилась false
+        public bool MoveNext()
+        {
+            curElem = curElem.Next;
+            return curElem != null;
+        }
+
+        // сброс указателя на нулевой элемент  
+        public void Reset()
+        {
+            curElem = new Elem<T>() { Info = default, Next = _list.First };
+        }
+    }
+
+    public class MyLinkedList<T>:IEnumerable<T>
     {
         public Elem<T> First { get; set; }
 
@@ -93,7 +139,34 @@ namespace StackApp
             return sb.ToString();
         }
 
+        public IEnumerator<T> GetEnumerator()
+        {
+            // вызов класса нумератора
+            //return new ListEnumerator<T>(this);
 
+
+            //реализация нумератора через Lazy yield return
+            yield return default;
+            yield return default;
+            yield return default;
+
+
+            var el = First;
+            while(el != null)
+            {
+                yield return el.Info;
+                el = el.Next;
+            }
+            yield break;
+
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+
+        
 
     }
 

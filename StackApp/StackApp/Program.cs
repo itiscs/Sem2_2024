@@ -20,12 +20,27 @@ Console.WriteLine("*******************************");
 
 MyLinkedList<int> lst = new MyLinkedList<int>();
 
-for (int i = 0; i < 10; i++)
+//for (int i = 0; i < 10; i++)
     lst.AddLast(5);
 
 lst.AddLast(6);
-for (int i = 0; i < 10; i++)
+//for (int i = 0; i < 10; i++)
     lst.AddLast(5);
+
+Console.WriteLine("********** ENumerator **************");
+foreach(int i in lst)
+{
+    Console.WriteLine(i);
+}
+
+Console.WriteLine("***********************");
+foreach (int i in lst)
+{
+    Console.WriteLine(i);
+}
+
+Console.WriteLine("***********************");
+
 
 
 Console.WriteLine(lst);
@@ -40,6 +55,15 @@ l2.AddLast("a");
 l2.AddLast("abc");
 l2.AddLast("xxx");
 l2.AddLast("zzz");
+
+Console.WriteLine("***********************");
+
+foreach (var i in l2)
+{
+    Console.WriteLine(i);
+}
+Console.WriteLine("***********************");
+
 
 Console.WriteLine(l2);
 l2.RemoveValue("a");
