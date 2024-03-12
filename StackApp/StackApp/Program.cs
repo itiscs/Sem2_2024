@@ -69,3 +69,25 @@ Console.WriteLine(l2);
 l2.RemoveValue("a");
 Console.WriteLine(l2);
 
+
+IEnumerable<int> GetValues()
+{
+    Random r = new Random();
+    while (true)
+    {
+        var x = r.Next(-100,100);
+        yield return x;
+        if(x == 0)
+            yield break;
+    }
+}
+
+int k = 0;
+var lst2 = GetValues();
+foreach (var i in lst2)
+{
+    k++;
+    Console.WriteLine(i);
+}
+
+Console.WriteLine($"k = {k} Count = {lst2.Count()}");
