@@ -5,3 +5,6 @@
 /StackApp/.vs
 /StackApp/StackApp/bin/Debug/net8.0
 /StackApp/StackApp/obj
+/LambdaApp/.vs/LambdaApp
+/LambdaApp/LambdaApp/bin/Debug/net8.0
+/LambdaApp/LambdaApp/obj
