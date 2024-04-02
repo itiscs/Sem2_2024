@@ -36,56 +36,105 @@ namespace LinqApp
             Console.WriteLine("************************");
 
 
-            var gr = new List<Student>();
-            gr.Add(new Student()
+            var groups = new List<Group>();
+            groups.Add(new Group()
             {
                 Id = 1,
-                GroupNum = 308,
+                GroupNum = "11-308",
+                Faculty = "ITIS",
+                Speciality = "SE"
+            });
+            groups.Add(new Group()
+            {
+                Id = 2,
+                GroupNum = "13-301",
+                Faculty = "ISFNK",
+                Speciality = "Philosoph"
+            }); 
+            groups.Add(new Group()
+            {
+                Id = 3,
+                GroupNum = "09-308",
+                Faculty = "IVMIIT",
+                Speciality = "BI"
+            });
+
+            var sts = new List<Student>();
+            sts.Add(new Student()
+            {
+                Id = 1,
+                GroupId = 1,
                 Name = "Ivan",
                 Age = 22,
                 Marks = new List<int> { 3, 4, 5, 5, 5 }
             });
-            gr.Add(new Student()
+            sts.Add(new Student()
             {
                 Id = 2,
                 Name = "Petr",
-                GroupNum = 308,
+                GroupId = 1,
                 Age = 21,
                 Marks = new List<int> { 5, 5, 5, 5, 5, 5 }
             });
-            gr.Add(new Student()
+            sts.Add(new Student()
             {
                 Id = 3,
                 Name = "Maria",
-                GroupNum = 308,
+                GroupId = 1,
                 Age = 18,
                 Marks = new List<int> { 3, 4, 3, 3, 3 }
             });
-            gr.Add(new Student()
+            sts.Add(new Student()
             {
                 Id = 4,
                 Name = "Anna",
-                GroupNum = 307,
+                GroupId = 2,
                 Age = 25,
                 Marks = new List<int> { 3, 4, 4, 4, 5 }
             });
-            gr.Add(new Student()
+            sts.Add(new Student()
             {
                 Id = 5,
                 Name = "Alexander",
-                GroupNum = 307,
+                GroupId = 2,
                 Age = 20,
                 Marks = new List<int> { 3, 3, 3, 5, 5 }
             });
-            gr.Add(new Student()
+            sts.Add(new Student()
             {
                 Id = 6,
                 Name = "Serg",
-                GroupNum = 309,
+                GroupId = 3,
                 Age = 20,
                 Marks = new List<int> { 4, 4, 4, 5, 5 }
             });
 
+
+
+            foreach (var g in groups)
+            {
+                Console.WriteLine(g);
+            }
+            Console.WriteLine("************************");
+
+            foreach (var s in sts)
+            {
+                Console.WriteLine(s);
+            }
+            Console.WriteLine("************************");
+
+            var l2 = sts.Join(groups, 
+                s => s.GroupId, g => g.Id, 
+                (s, g) => new { s.Name, s.Age, g.GroupNum, g.Faculty });
+
+            var l3 = groups.Join(sts,
+                g => g.Id, s => s.GroupId,
+                (g, s) => new { s.Name, s.Age, g.GroupNum, g.Faculty });
+
+            foreach (var l in l3)
+            {
+                Console.WriteLine(l);
+            }
 
             //var newGr = gr.Where(s => s.Marks.Average() > 2)
             //    .OrderBy(s => s.Age)
@@ -100,19 +149,19 @@ namespace LinqApp
 
 
 
-            var newGr = gr.GroupBy(s => s.GroupNum)//.Name.Length)
-                .Select(g => new { g.Key, Count = g.Count(),
-                MaxAge = g.Max(s => s.Age),
-                AllMarks = g.SelectMany(s=>s.Marks)});
+            //var newGr = gr.GroupBy(s => s.GroupNum)//.Name.Length)
+            //    .Select(g => new { g.Key, Count = g.Count(),
+            //    MaxAge = g.Max(s => s.Age),
+            //    AllMarks = g.SelectMany(s=>s.Marks)});
 
 
-            foreach(var s in newGr)
-            {
-                Console.WriteLine(s);
-                foreach (var m in s.AllMarks)
-                    Console.Write($" {m}");
-                Console.WriteLine();
-            }
+            //foreach(var s in newGr)
+            //{
+            //    Console.WriteLine(s);
+            //    foreach (var m in s.AllMarks)
+            //        Console.Write($" {m}");
+            //    Console.WriteLine();
+            //}
 
             //foreach(var g in newGr )
             //{
