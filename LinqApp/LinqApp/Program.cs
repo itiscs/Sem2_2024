@@ -60,6 +60,10 @@ namespace LinqApp
             });
 
             var sts = new List<Student>();
+
+            Console.Write(sts.Max(s=>s.Age));
+
+
             sts.Add(new Student()
             {
                 Id = 1,
