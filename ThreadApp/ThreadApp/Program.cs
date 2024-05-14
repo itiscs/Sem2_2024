@@ -4,7 +4,7 @@
     {
 
         public static int sum = 0, sum_par = 0, p = 8;
-        public static int n = 5000000;
+        public static int n = 10000000;
         public static int[] arr, sum3;
 
         static object locker = new object();
@@ -42,14 +42,22 @@
 
 
 
-            //List<Task> tasks = new List<Task>();
+            List<Task> tasks = new List<Task>();
 
 
-            //for (int i = 0; i < p; i++)
-            //    tasks.Add(new Task(() => Sum(i*k,(i+1)*k) ));
+            t1 = DateTime.Now;
+
+            for (int i = 0; i < p; i++)
+            {
+                int num = i;
+                tasks.Add(new Task(() => Sum(num)));
+                //tasks[i].Start();
+            }
+
+            tasks.ForEach(t => t.Start());
 
 
-           
+
             //Task task1 = new Task(() => Sum(0, k));
             //Task task2 = new Task(() => Sum(k, 2 * k));
             //Task task3 = new Task(() => Sum(2 * k, 3 * k));
@@ -61,11 +69,11 @@
             //Thread thread4 = new Thread(Print);
             //Thread thread5 = new Thread(Print);
 
-            t1 = DateTime.Now;
+            // t1 = DateTime.Now;
 
             //tasks.ForEach(t => t.Start());
 
-            Parallel.For(0, p, Sum);
+            //Parallel.For(0, p, Sum);
 
 
             //task1.Start();
@@ -87,7 +95,7 @@
             //for (int i = 0; i < p; i++)
             //    sum += sum3[i];
 
-            Task.WaitAll();
+            Task.WaitAll(tasks.ToArray());
 
             //sum = sum3[0] + sum3[1] + sum3[2] + sum3[3];
             Console.WriteLine($"Время параллельно - {(DateTime.Now - t1).TotalMilliseconds}");
@@ -121,12 +129,12 @@
 
         public static void Sum(int id)
         {
-            //Console.WriteLine($"thread {Thread.CurrentThread.ManagedThreadId} i1 = {i1} i2 = {i2}");
+            //Console.WriteLine($"thread {Thread.CurrentThread.ManagedThreadId} id = {id}");
 
             int k = n / p;
             int i1 = k * id;
             int i2 = k * (id + 1);
-            
+
             int local_sum = 0;
             for (int i = i1; i < i2; i++)
                 local_sum += arr[i];
