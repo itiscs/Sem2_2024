@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34902.65
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerializeApp", "SerializeApp\SerializeApp.csproj", "{CDD544BF-5602-4DE9-97A0-ABD9B7AD4DCB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CDD544BF-5602-4DE9-97A0-ABD9B7AD4DCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDD544BF-5602-4DE9-97A0-ABD9B7AD4DCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDD544BF-5602-4DE9-97A0-ABD9B7AD4DCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDD544BF-5602-4DE9-97A0-ABD9B7AD4DCB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {83527283-DA9E-4CB1-8DAF-00CC7D8FD23E}
+	EndGlobalSection
+EndGlobal
